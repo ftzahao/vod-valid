@@ -1,0 +1,19 @@
+{
+  "name": "vod-valid",
+  "version": "2.0.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "bun run ./src/main.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "es-toolkit": "^1.44.0",
+    "nanoid": "^5.1.6"
+  }
+}

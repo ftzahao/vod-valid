@@ -1,0 +1,272 @@
+[
+  {
+    "title": "樱花资源",
+    "value": "https://m3u8.apiyhzy.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1542.10ms，成功测试的平均延迟: 1542.10ms"
+  },
+  {
+    "title": "IKUN资源",
+    "value": "https://ikunzyapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1601.36ms，成功测试的平均延迟: 1601.36ms"
+  },
+  {
+    "title": "爱蛋资源",
+    "value": "https://lovedan.net/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1665.29ms，成功测试的平均延迟: 1665.29ms"
+  },
+  {
+    "title": "卧龙资源",
+    "value": "https://collect.wolongzyw.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1690.51ms，成功测试的平均延迟: 1690.51ms"
+  },
+  {
+    "title": "卧龙资源",
+    "value": "https://wolongzyw.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1738.46ms，成功测试的平均延迟: 1738.46ms"
+  },
+  {
+    "title": "非凡资源",
+    "value": "https://ffzy5.tv/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1772.08ms，成功测试的平均延迟: 1772.08ms"
+  },
+  {
+    "title": "如意资源",
+    "value": "https://cj.rycjapi.com/api.php/provide/vod/at/json/",
+    "remark": "成功测试: 3/3，平均延迟: 1884.78ms，成功测试的平均延迟: 1884.78ms"
+  },
+  {
+    "title": "豆瓣资源",
+    "value": "https://dbzy.tv/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1885.46ms，成功测试的平均延迟: 1885.46ms"
+  },
+  {
+    "title": "速博资源",
+    "value": "https://subocaiji.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1892.92ms，成功测试的平均延迟: 1892.92ms"
+  },
+  {
+    "title": "虎牙资源",
+    "value": "https://www.huyaapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 1975.44ms，成功测试的平均延迟: 1975.44ms"
+  },
+  {
+    "title": "非凡资源",
+    "value": "https://ffzy4.tv/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 2044.80ms，成功测试的平均延迟: 2044.80ms"
+  },
+  {
+    "title": "爱奇艺资源站",
+    "value": "https://iqiyizyapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 2154.35ms，成功测试的平均延迟: 2154.35ms"
+  },
+  {
+    "title": "森林资源",
+    "value": "https://slapibf.com/api.php/provide/vod",
+    "remark": "成功测试: 3/3，平均延迟: 2157.18ms，成功测试的平均延迟: 2157.18ms"
+  },
+  {
+    "title": "最大资源",
+    "value": "https://zuidazy.me/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 2257.74ms，成功测试的平均延迟: 2257.74ms"
+  },
+  {
+    "title": "360资源",
+    "value": "https://360zy.com/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 2267.24ms，成功测试的平均延迟: 2267.24ms"
+  },
+  {
+    "title": "茅台资源",
+    "value": "https://caiji.maotaizy.cc/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 2389.15ms，成功测试的平均延迟: 2389.15ms"
+  },
+  {
+    "title": "魔都资源",
+    "value": "https://caiji.moduapi.cc/api.php/provide/vod/",
+    "remark": "成功测试: 3/3，平均延迟: 2579.35ms，成功测试的平均延迟: 2579.35ms"
+  },
+  {
+    "title": "网民电影",
+    "value": "http://prinevillesda.org/api.php/provide/vod",
+    "remark": "成功测试: 3/3，平均延迟: 21973.48ms，成功测试的平均延迟: 21973.48ms"
+  },
+  {
+    "title": "如意资源",
+    "value": "https://cj.rycjapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 2/3，平均延迟: 2628.00ms，成功测试的平均延迟: 1914.80ms"
+  },
+  {
+    "title": "39影視",
+    "value": "http://39kan.com/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 40193.72ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "业余资源",
+    "value": "https://yyff.540734621.xyz/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 606.10ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "丝袜资源",
+    "value": "http://siwazyw.cc/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 1150.86ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "乐活影视",
+    "value": "http://lehootv.com/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 2055.39ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "U质资源",
+    "value": "http://api.1080zyku.com/inc/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 2337.09ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "U酷资源",
+    "value": "https://api.ukuapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 2163.11ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "光速资源",
+    "value": "http://api.guangsuapi.com/api.php/provide/vod/from/gsm3u8",
+    "remark": "成功测试: 0/3，平均延迟: 1932.12ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "刺桐资源",
+    "value": "http://ys9.cttv.vip/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 2603.67ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "北斗星资源",
+    "value": "http://m3u8.bdxzyapi.com/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 2658.67ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "华为吧资源",
+    "value": "https://hw8.live/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 95983.79ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "四九资源",
+    "value": "https://49zyw.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 8719.96ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "天堂资源",
+    "value": "http://vipmv.cc/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 8307.74ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "天空資源",
+    "value": "http://m3u8.tiankongapi.com/api.php/provide/vod/from/tkm3u8",
+    "remark": "成功测试: 0/3，平均延迟: 1545.63ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "天翼资源",
+    "value": "https://www.911ysw.top/tianyi.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1413.17ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "奇虎资源",
+    "value": "https://caiji.qhzyapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 2826.30ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "奥斯卡资源网",
+    "value": "http://aosikazy.com/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 382.75ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "官网资源",
+    "value": "http://gwcms.cttv.vip/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1788.85ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "小黄人资源",
+    "value": "https://iqyi.xiaohuangrentv.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1710.77ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "影库资源网",
+    "value": "http://api.ykapi.net/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 2833.53ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "快云资源",
+    "value": "https://www.kuaiyunzy.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 8547.60ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "快看资源",
+    "value": "https://www.kuaikan-api.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 5103.47ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "快车资源",
+    "value": "https://caiji.kczyapi.com/api.php/provide/vod/from/kcm3u8/",
+    "remark": "成功测试: 0/3，平均延迟: 1614.87ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "探探资源",
+    "value": "http://apittzy.com/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 8307.42ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "海外看资源",
+    "value": "https://haiwaikan.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1626.80ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "火狐资源",
+    "value": "https://hhzyapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1254.52ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "熊掌资源",
+    "value": "https://xzcjz.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1470.72ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "豪华资源",
+    "value": "https://hhzyapi.com/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 1297.52ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "酷点资源",
+    "value": "http://kudian10.com/api.php/provide/vod",
+    "remark": "成功测试: 0/3，平均延迟: 2699.60ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "量子資源",
+    "value": "http://cj.lziapi.com/api.php/provide/vod/from/lzm3u8",
+    "remark": "成功测试: 0/3，平均延迟: 896.22ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "量子资源",
+    "value": "https://cj.lziapi.com/api.php/provide/vod/at/json/",
+    "remark": "成功测试: 0/3，平均延迟: 1159.31ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "量子资源",
+    "value": "https://cj.lziapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1145.89ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "開放電影",
+    "value": "http://vod-demo.onrender.com/pubdovod.php",
+    "remark": "成功测试: 0/3，平均延迟: 1940.84ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "飘花资源",
+    "value": "http://www.ahjiuman.com/api.php/provide/vod/at/json",
+    "remark": "成功测试: 0/3，平均延迟: 8306.60ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "飘零资源",
+    "value": "https://p2100.net/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 1703.00ms，成功测试的平均延迟: N/A"
+  },
+  {
+    "title": "飞速资源",
+    "value": "https://www.feisuzyapi.com/api.php/provide/vod/",
+    "remark": "成功测试: 0/3，平均延迟: 8544.69ms，成功测试的平均延迟: N/A"
+  }
+]
