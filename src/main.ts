@@ -135,3 +135,18 @@ ${JSON.stringify(successResults, null, 2)}
 )
 console.log(`延迟不超过1500ms的URL已保存到 ./dist/sucess_remark.json (${successResults.length}个)`)
 console.log(`延迟超过1500ms的URL已保存到 ./dist/error_remark.json (${errorResults.length}个)`)
+
+const url = 'https://raw.githubusercontent.com/ftzahao/vod-valid/refs/heads/main/dist/'
+console.table([
+  { name: 'sucess_remark.json', url: url + 'sucess_remark.json' },
+  { name: 'error_remark.json', url: url + 'error_remark.json' },
+  { name: 'sucess.json', url: url + 'sucess.json' },
+  { name: 'error.json', url: url + 'error.json' },
+  { name: 'sucess_remark.csv', url: url + 'sucess_remark.csv' },
+  { name: 'error_remark.csv', url: url + 'error_remark.csv' },
+  { name: 'sucess.csv', url: url + 'sucess.csv' },
+  { name: 'error.csv', url: url + 'error.csv' },
+  { name: 'vodstream.js', url: url + 'vodstream.js' },
+  { name: 'kvideo-settings.json', url: url + 'kvideo-settings.json' },
+  { name: 'changelog.md', url: url + 'changelog.md' }
+])
