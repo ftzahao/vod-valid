@@ -1,11 +1,15 @@
 [
   {
     "title": "唐人街",
-    "value": "http://tangrenjie.tv/api.php/provide/vod/at/xm"
+    "value": "http://tangrenjie.tv/api.php/provide/vod"
   },
   {
     "title": "唐人街",
-    "value": "http://tangrenjie.tv/api.php/provide/vod"
+    "value": "http://tangrenjie.tv/api.php/provide/vod/at/xm"
+  },
+  {
+    "title": "飘花电影",
+    "value": "http://www.zzrhgg.com/api.php/provide/vod"
   },
   {
     "title": "酷点资源",
@@ -20,87 +24,87 @@
     "value": "http://sdzyapi.com/api.php/provide/vod"
   },
   {
-    "title": "金鹰资源",
-    "value": "http://jyzyapi.com/provide/vod/from/jinyingm3u8"
-  },
-  {
-    "title": "飘花电影",
-    "value": "http://www.zzrhgg.com/api.php/provide/vod"
+    "title": "樱花资源网",
+    "value": "http://m3u8.apiyhzy.com/api.php/provide/vod"
   },
   {
     "title": "閃電資源",
     "value": "http://sdzyapi.com/api.php/provide/vod/from/sdm3u8"
   },
   {
-    "title": "樱花资源网",
-    "value": "http://m3u8.apiyhzy.com/api.php/provide/vod"
-  },
-  {
-    "title": "最大资源",
-    "value": "https://api.zuidapi.com/api.php/provide/vod/"
-  },
-  {
-    "title": "艾旦影视",
-    "value": "http://lovedan.net/api.php/provide/vod"
-  },
-  {
-    "title": "极速资源",
-    "value": "https://jszyapi.com/api.php/provide/vod/"
-  },
-  {
-    "title": "牛牛资源",
-    "value": "https://api.niuniuzy.me/api.php/provide/vod/"
-  },
-  {
-    "title": "鲸鱼资源",
-    "value": "https://jyzyapi.com/provide/vod/"
-  },
-  {
-    "title": "非凡资源",
-    "value": "https://cj.ffzyapi.com/api.php/provide/vod/"
-  },
-  {
-    "title": "索尼资源",
-    "value": "https://suoniapi.com/api.php/provide/vod/"
-  },
-  {
-    "title": "无尽资源",
-    "value": "https://api.wujinapi.com/api.php/provide/vod/"
-  },
-  {
     "title": "黑木耳资源",
     "value": "https://www.heimuer.tv/api.php/provide/vod"
-  },
-  {
-    "title": "丫丫资源",
-    "value": "https://cj.yayazy.net/api.php/provide/vod/"
-  },
-  {
-    "title": "紅牛资源",
-    "value": "https://hongniuzy2.com/api.php/provide/vod/from/hnm3u8"
-  },
-  {
-    "title": "光速资源",
-    "value": "https://api.guangsuapi.com/api.php/provide/vod/"
-  },
-  {
-    "title": "红牛资源",
-    "value": "https://www.hongniuzy2.com/api.php/provide/vod/"
-  },
-  {
-    "title": "暴风资源",
-    "value": "https://bfzyapi.com/api.php/provide/vod/"
   },
   {
     "title": "电影天堂",
     "value": "https://caiji.dyttzyapi.com/api.php/provide/vod/"
   },
   {
-    "title": "百度资源",
-    "value": "https://api.apibdzy.com/api.php/provide/vod/"
+    "title": "光速资源",
+    "value": "https://api.guangsuapi.com/api.php/provide/vod/"
   },
   {
     "title": "新浪资源",
     "value": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/"
+  },
+  {
+    "title": "艾旦影视",
+    "value": "http://lovedan.net/api.php/provide/vod"
+  },
+  {
+    "title": "红牛资源",
+    "value": "https://www.hongniuzy2.com/api.php/provide/vod/"
+  },
+  {
+    "title": "最大资源",
+    "value": "https://api.zuidapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "索尼资源",
+    "value": "https://suoniapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "非凡资源",
+    "value": "https://cj.ffzyapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "最大资源",
+    "value": "https://zuidazy.me/api.php/provide/vod/"
+  },
+  {
+    "title": "丫丫资源",
+    "value": "https://cj.yayazy.net/api.php/provide/vod/"
+  },
+  {
+    "title": "豆瓣资源",
+    "value": "https://dbzy.tv/api.php/provide/vod/"
+  },
+  {
+    "title": "牛牛资源",
+    "value": "https://api.niuniuzy.me/api.php/provide/vod/"
+  },
+  {
+    "title": "百度资源",
+    "value": "https://api.apibdzy.com/api.php/provide/vod/"
+  },
+  {
+    "title": "无尽资源",
+    "value": "https://api.wujinapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "卧龙资源",
+    "value": "https://collect.wolongzyw.com/api.php/provide/vod/"
+  },
+  {
+    "title": "卧龙资源",
+    "value": "https://wolongzyw.com/api.php/provide/vod/"
+  },
+  {
+    "title": "樱花资源",
+    "value": "https://m3u8.apiyhzy.com/api.php/provide/vod/"
+  },
+  {
+    "title": "IKUN资源",
+    "value": "https://ikunzyapi.com/api.php/provide/vod/"
   }
 ]
