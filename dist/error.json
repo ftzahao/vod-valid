@@ -1,43 +1,27 @@
 [
   {
-    "title": "紅牛资源",
-    "value": "https://hongniuzy2.com/api.php/provide/vod/from/hnm3u8"
-  },
-  {
-    "title": "暴风资源",
-    "value": "https://bfzyapi.com/api.php/provide/vod/"
+    "title": "茅台资源",
+    "value": "https://caiji.maotaizy.cc/api.php/provide/vod/"
   },
   {
     "title": "爱蛋资源",
     "value": "https://lovedan.net/api.php/provide/vod/"
   },
   {
-    "title": "速博资源",
-    "value": "https://subocaiji.com/api.php/provide/vod/"
-  },
-  {
     "title": "如意资源",
     "value": "https://cj.rycjapi.com/api.php/provide/vod/at/json/"
   },
   {
+    "title": "如意资源",
+    "value": "https://cj.rycjapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "电影天堂",
+    "value": "https://caiji.dyttzyapi.com/api.php/provide/vod/"
+  },
+  {
     "title": "非凡资源",
-    "value": "https://ffzy5.tv/api.php/provide/vod/"
-  },
-  {
-    "title": "茅台资源",
-    "value": "https://caiji.maotaizy.cc/api.php/provide/vod/"
-  },
-  {
-    "title": "魔都资源",
-    "value": "https://caiji.moduapi.cc/api.php/provide/vod/"
-  },
-  {
-    "title": "360资源",
-    "value": "https://360zy.com/api.php/provide/vod/"
-  },
-  {
-    "title": "极速资源",
-    "value": "https://jszyapi.com/api.php/provide/vod/"
+    "value": "https://ffzy4.tv/api.php/provide/vod/"
   },
   {
     "title": "森林资源",
@@ -48,28 +32,20 @@
     "value": "https://iqiyizyapi.com/api.php/provide/vod/"
   },
   {
-    "title": "网民电影",
-    "value": "http://prinevillesda.org/api.php/provide/vod"
+    "title": "卧龙资源",
+    "value": "https://collect.wolongzyw.com/api.php/provide/vod/"
   },
   {
-    "title": "虎牙资源",
-    "value": "https://www.huyaapi.com/api.php/provide/vod/"
+    "title": "百度资源",
+    "value": "https://api.apibdzy.com/api.php/provide/vod/"
   },
   {
-    "title": "非凡资源",
-    "value": "https://ffzy4.tv/api.php/provide/vod/"
+    "title": "360资源",
+    "value": "https://360zy.com/api.php/provide/vod/"
   },
   {
-    "title": "金鹰资源",
-    "value": "http://jyzyapi.com/provide/vod/from/jinyingm3u8"
-  },
-  {
-    "title": "鲸鱼资源",
-    "value": "https://jyzyapi.com/provide/vod/"
-  },
-  {
-    "title": "如意资源",
-    "value": "https://cj.rycjapi.com/api.php/provide/vod/"
+    "title": "魔都资源",
+    "value": "https://caiji.moduapi.cc/api.php/provide/vod/"
   },
   {
     "title": "39影視",
