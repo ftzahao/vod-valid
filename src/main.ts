@@ -1,6 +1,6 @@
 import Bun from 'bun'
 import data from './data'
-import { testingUrlConnectivityAndLatency } from './utils'
+import { testingUrlConnectivityAndLatency, generateVodstream } from './utils'
 import { chunk } from 'es-toolkit'
 import { nanoid } from 'nanoid'
 
@@ -13,8 +13,7 @@ for (const group of chunk(data, size)) {
   let res = (
     await Promise.allSettled(
       group.map(async ([name, url]) => {
-        console.log(`正在测试: ${name} - ${url}`)
-        const result = await testingUrlConnectivityAndLatency(url)
+        const result = await testingUrlConnectivityAndLatency(url, { testTotal: 3, parallel: false, name })
         return { name, ...result }
       })
     )
@@ -70,6 +69,7 @@ await Bun.write('./dist/sucess_remark.csv', successResultsCsv)
 await Bun.write('./dist/error_remark.csv', errorResultsCsv)
 await Bun.write('./dist/sucess.csv', successResultsCsvNoRemark)
 await Bun.write('./dist/error.csv', errorResultsCsvNoRemark)
+await Bun.write('./dist/vodstream.js', await generateVodstream(successResultsCsvNoRemark))
 await Bun.write(
   './dist/kvideo-settings.json',
   JSON.stringify(
@@ -116,10 +116,6 @@ await Bun.write(
     2
   )
 )
-
-console.log(`延迟不超过1500ms的URL已保存到 ./dist/sucess_remark.json (${successResults.length}个)`)
-console.log(`延迟超过1500ms的URL已保存到 ./dist/error_remark.json (${errorResults.length}个)`)
-
 await Bun.write(
   './dist/changelog.md',
   `## 延迟不超过1500ms
@@ -137,3 +133,5 @@ ${JSON.stringify(successResults, null, 2)}
 \`\`\`
 `
 )
+console.log(`延迟不超过1500ms的URL已保存到 ./dist/sucess_remark.json (${successResults.length}个)`)
+console.log(`延迟超过1500ms的URL已保存到 ./dist/error_remark.json (${errorResults.length}个)`)
