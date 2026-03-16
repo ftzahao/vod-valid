@@ -13,7 +13,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "es-toolkit": "^1.44.0",
-    "nanoid": "^5.1.6"
+    "es-toolkit": "^1.45.1",
+    "nanoid": "^5.1.7"
   }
 }
