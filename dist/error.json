@@ -1,51 +1,47 @@
 [
   {
+    "title": "卧龙资源",
+    "value": "https://collect.wolongzyw.com/api.php/provide/vod/"
+  },
+  {
+    "title": "IKUN资源",
+    "value": "https://ikunzyapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "卧龙资源",
+    "value": "https://wolongzyw.com/api.php/provide/vod/"
+  },
+  {
+    "title": "最大资源",
+    "value": "https://api.zuidapi.com/api.php/provide/vod/"
+  },
+  {
     "title": "茅台资源",
     "value": "https://caiji.maotaizy.cc/api.php/provide/vod/"
-  },
-  {
-    "title": "爱蛋资源",
-    "value": "https://lovedan.net/api.php/provide/vod/"
-  },
-  {
-    "title": "如意资源",
-    "value": "https://cj.rycjapi.com/api.php/provide/vod/at/json/"
   },
   {
     "title": "如意资源",
     "value": "https://cj.rycjapi.com/api.php/provide/vod/"
   },
   {
-    "title": "电影天堂",
-    "value": "https://caiji.dyttzyapi.com/api.php/provide/vod/"
+    "title": "魔都资源",
+    "value": "https://caiji.moduapi.cc/api.php/provide/vod/"
   },
   {
     "title": "非凡资源",
     "value": "https://ffzy4.tv/api.php/provide/vod/"
   },
   {
-    "title": "森林资源",
-    "value": "https://slapibf.com/api.php/provide/vod"
-  },
-  {
-    "title": "爱奇艺资源站",
-    "value": "https://iqiyizyapi.com/api.php/provide/vod/"
-  },
-  {
-    "title": "卧龙资源",
-    "value": "https://collect.wolongzyw.com/api.php/provide/vod/"
-  },
-  {
-    "title": "百度资源",
-    "value": "https://api.apibdzy.com/api.php/provide/vod/"
-  },
-  {
     "title": "360资源",
     "value": "https://360zy.com/api.php/provide/vod/"
   },
   {
-    "title": "魔都资源",
-    "value": "https://caiji.moduapi.cc/api.php/provide/vod/"
+    "title": "如意资源",
+    "value": "https://cj.rycjapi.com/api.php/provide/vod/at/json/"
+  },
+  {
+    "title": "爱奇艺资源站",
+    "value": "https://iqiyizyapi.com/api.php/provide/vod/"
   },
   {
     "title": "39影視",
@@ -140,6 +136,10 @@
     "value": "http://apittzy.com/api.php/provide/vod"
   },
   {
+    "title": "森林资源",
+    "value": "https://slapibf.com/api.php/provide/vod"
+  },
+  {
     "title": "海外看资源",
     "value": "https://haiwaikan.com/api.php/provide/vod/"
   },
@@ -176,12 +176,12 @@
     "value": "http://vod-demo.onrender.com/pubdovod.php"
   },
   {
-    "title": "飘花资源",
-    "value": "http://www.ahjiuman.com/api.php/provide/vod/at/json"
+    "title": "非凡资源",
+    "value": "https://ffzy5.tv/api.php/provide/vod/"
   },
   {
-    "title": "飘零资源",
-    "value": "https://p2100.net/api.php/provide/vod/"
+    "title": "飘花资源",
+    "value": "http://www.ahjiuman.com/api.php/provide/vod/at/json"
   },
   {
     "title": "飞速资源",
