@@ -1,6 +1,6 @@
 {
   "name": "vod-valid",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "main": "main.js",
   "scripts": {
@@ -10,10 +10,10 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
-    "es-toolkit": "^1.45.1",
-    "nanoid": "^5.1.7"
+    "es-toolkit": "^1.52.0",
+    "nanoid": "^6.0.2"
   }
 }

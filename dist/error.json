@@ -1,47 +1,39 @@
 [
   {
-    "title": "卧龙资源",
-    "value": "https://collect.wolongzyw.com/api.php/provide/vod/"
+    "title": "网民电影",
+    "value": "http://prinevillesda.org/api.php/provide/vod"
   },
   {
-    "title": "IKUN资源",
-    "value": "https://ikunzyapi.com/api.php/provide/vod/"
+    "title": "华为吧资源",
+    "value": "https://hw8.live/api.php/provide/vod/"
   },
   {
-    "title": "卧龙资源",
-    "value": "https://wolongzyw.com/api.php/provide/vod/"
+    "title": "豆瓣资源",
+    "value": "https://dbzy.tv/api.php/provide/vod/"
   },
   {
-    "title": "最大资源",
-    "value": "https://api.zuidapi.com/api.php/provide/vod/"
+    "title": "无尽资源",
+    "value": "https://api.wujinapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "极速资源",
+    "value": "https://jszyapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "森林资源",
+    "value": "https://slapibf.com/api.php/provide/vod"
+  },
+  {
+    "title": "速博资源",
+    "value": "https://subocaiji.com/api.php/provide/vod/"
+  },
+  {
+    "title": "百度资源",
+    "value": "https://api.apibdzy.com/api.php/provide/vod/"
   },
   {
     "title": "茅台资源",
     "value": "https://caiji.maotaizy.cc/api.php/provide/vod/"
-  },
-  {
-    "title": "如意资源",
-    "value": "https://cj.rycjapi.com/api.php/provide/vod/"
-  },
-  {
-    "title": "魔都资源",
-    "value": "https://caiji.moduapi.cc/api.php/provide/vod/"
-  },
-  {
-    "title": "非凡资源",
-    "value": "https://ffzy4.tv/api.php/provide/vod/"
-  },
-  {
-    "title": "360资源",
-    "value": "https://360zy.com/api.php/provide/vod/"
-  },
-  {
-    "title": "如意资源",
-    "value": "https://cj.rycjapi.com/api.php/provide/vod/at/json/"
-  },
-  {
-    "title": "爱奇艺资源站",
-    "value": "https://iqiyizyapi.com/api.php/provide/vod/"
   },
   {
     "title": "39影視",
@@ -60,10 +52,6 @@
     "value": "http://lehootv.com/api.php/provide/vod"
   },
   {
-    "title": "U质资源",
-    "value": "http://api.1080zyku.com/inc/api.php/provide/vod"
-  },
-  {
     "title": "U酷资源",
     "value": "https://api.ukuapi.com/api.php/provide/vod/"
   },
@@ -80,8 +68,12 @@
     "value": "http://m3u8.bdxzyapi.com/api.php/provide/vod"
   },
   {
-    "title": "华为吧资源",
-    "value": "https://hw8.live/api.php/provide/vod/"
+    "title": "卧龙资源",
+    "value": "https://collect.wolongzyw.com/api.php/provide/vod/"
+  },
+  {
+    "title": "卧龙资源",
+    "value": "https://wolongzyw.com/api.php/provide/vod/"
   },
   {
     "title": "四九资源",
@@ -106,6 +98,14 @@
   {
     "title": "奥斯卡资源网",
     "value": "http://aosikazy.com/api.php/provide/vod"
+  },
+  {
+    "title": "如意资源",
+    "value": "https://cj.rycjapi.com/api.php/provide/vod/"
+  },
+  {
+    "title": "如意资源",
+    "value": "https://cj.rycjapi.com/api.php/provide/vod/at/json/"
   },
   {
     "title": "官网资源",
@@ -136,24 +136,16 @@
     "value": "http://apittzy.com/api.php/provide/vod"
   },
   {
-    "title": "森林资源",
-    "value": "https://slapibf.com/api.php/provide/vod"
-  },
-  {
     "title": "海外看资源",
     "value": "https://haiwaikan.com/api.php/provide/vod/"
-  },
-  {
-    "title": "火狐资源",
-    "value": "https://hhzyapi.com/api.php/provide/vod/"
   },
   {
     "title": "熊掌资源",
     "value": "https://xzcjz.com/api.php/provide/vod/"
   },
   {
-    "title": "豪华资源",
-    "value": "https://hhzyapi.com/api.php/provide/vod"
+    "title": "酷点资源",
+    "value": "http://api.kuapi.cc/api.php/provide/vod"
   },
   {
     "title": "酷点资源",
@@ -172,19 +164,35 @@
     "value": "https://cj.lziapi.com/api.php/provide/vod/"
   },
   {
+    "title": "閃電資源",
+    "value": "http://sdzyapi.com/api.php/provide/vod/from/sdm3u8"
+  },
+  {
+    "title": "闪电资源",
+    "value": "http://sdzyapi.com/api.php/provide/vod"
+  },
+  {
+    "title": "闪电资源",
+    "value": "http://sdzyapi.com/api.php/provide/vod/"
+  },
+  {
     "title": "開放電影",
     "value": "http://vod-demo.onrender.com/pubdovod.php"
   },
   {
     "title": "非凡资源",
-    "value": "https://ffzy5.tv/api.php/provide/vod/"
+    "value": "https://ffzy4.tv/api.php/provide/vod/"
   },
   {
     "title": "飘花资源",
     "value": "http://www.ahjiuman.com/api.php/provide/vod/at/json"
   },
   {
-    "title": "飞速资源",
-    "value": "https://www.feisuzyapi.com/api.php/provide/vod/"
+    "title": "飘零资源",
+    "value": "https://p2100.net/api.php/provide/vod/"
+  },
+  {
+    "title": "黑木耳资源",
+    "value": "https://www.heimuer.tv/api.php/provide/vod"
   }
 ]

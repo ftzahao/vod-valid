@@ -1,24 +1,11 @@
 // --- 源 ---
 const RESOURCE_SITES = `{RESOURCE_SITES}`;
 
-const CHINESE_NUM_MAP = {
-  一: 1,
-  二: 2,
-  三: 3,
-  四: 4,
-  五: 5,
-  六: 6,
-  七: 7,
-  八: 8,
-  九: 9,
-  十: 10
-}
-
 WidgetMetadata = {
   id: 'vod_stream_source',
   title: '视频点播源',
   icon: null,
-  version: '2.0.0',
+  version: '{version}',
   requiredVersion: '0.0.1',
   description: '获取VOD播放资源',
   author: 'ftzahao',
@@ -53,26 +40,240 @@ WidgetMetadata = {
 
 // --- 辅助工具函数 ---
 
-const isM3U8Url = (url) => url?.toLowerCase().includes('m3u8') || false
+const SEASON_MARKER_RE = /第\s*([一二三四五六七八九十百零两\d]+)\s*[季部]/
+const SEASON_MARKER_GLOBAL_RE = /第\s*([一二三四五六七八九十百零两\d]+)\s*[季部]/g
+const SEASON_EN_RE = /(?:^|[\s._-])(?:season|s)\s*(\d{1,2})(?=$|[\s._-])/i
+const SEASON_SUFFIX_RE = /(\d{1,2})\s*季/
 
-function extractSeasonInfo(seriesName) {
-  if (!seriesName) return { baseName: seriesName, seasonNumber: 1 }
-  const chineseMatch = seriesName.match(/第([一二三四五六七八九十\d]+)[季部]/)
-  if (chineseMatch) {
-    const val = chineseMatch[1]
-    const seasonNum = CHINESE_NUM_MAP[val] || parseInt(val) || 1
-    const baseName = seriesName.replace(/第[一二三四五六七八九十\d]+[季部]/, '').trim()
-    return { baseName, seasonNumber: seasonNum }
+const BRACKET_RE = /[（(【\[][^）)】\]]*[）)】\]]/g
+const DISQUALIFY_WORDS = ['解说', '预告', '花絮', '片段', '幕后', '纪录片', '彩蛋', '特辑', '制作特辑', '拍摄花絮']
+
+// 位于词首或词尾的装饰词（清晰度、语言、版本状态等）
+const DECORATION_EDGE = '(?:4k|8k|2160p|1080p|720p|480p|web-?dl|hdtv|hdrip|dvdrip|webrip|brrip|hd|bd|ts|tc|cam|蓝光|超清|高清|国语|粤语|中文字幕|中字|双语|未删减|完整版|导演剪辑版|修复版|抢先版|枪版|正片|已完结|完结|全\\d+集|更新至?\\d+集|全集|国语版|粤语版|中字版|高清版)'
+const DECORATION_HEAD_RE = new RegExp('^' + DECORATION_EDGE + '+', 'i')
+const DECORATION_TAIL_RE = new RegExp(DECORATION_EDGE + '+$', 'i')
+
+// 去掉首尾装饰词；剩余为空说明整段都是装饰（如 "HD国语"、"全36集"）
+// 年份不算装饰：不同年份可能是不同作品（如《三体》2022/2023 两版）
+function isDecorationText(text) {
+  const value = text.trim()
+  if (!value) return true
+  let cleaned = value
+  for (let i = 0; i < 3; i++) {
+    const next = cleaned.replace(DECORATION_HEAD_RE, '').replace(DECORATION_TAIL_RE, '').trim()
+    if (next === cleaned) break
+    cleaned = next
   }
-  const digitMatch = seriesName.match(/(.+?)(\d+)$/)
-  if (digitMatch) {
-    return { baseName: digitMatch[1].trim(), seasonNumber: parseInt(digitMatch[2]) || 1 }
-  }
-  return { baseName: seriesName.trim(), seasonNumber: 1 }
+  return cleaned === ''
 }
 
 /**
- * 修改后的提取逻辑：不再直接过滤集数，而是返回带标记的所有集数以便缓存
+ * 只移除“装饰性”括号内容（清晰度/语言/集数等）。
+ * 括号里是副标题时保留，避免把《流浪地球2（再次冒险）》误当成《流浪地球2》。
+ */
+function stripBrackets(text) {
+  return text.replace(/[（(【\[]([^）)】\]]*)[）)】\]]/g, (full, content) =>
+    isDecorationText(content) ? ' ' : full
+  )
+}
+
+// 非默认音轨：用户没点名时不应把粤语/外语版本当成同一标题
+const ALTERNATIVE_LANGUAGE_RE = /(粤语|粤配|英语|英配|日语|日配|韩语|韩配|泰语|台语|闽南语)/
+
+const isM3U8Url = (url) => typeof url === 'string' && url.toLowerCase().includes('m3u8')
+
+// 播放器可识别的直链：m3u8 / mp4（分享页是 HTML，直接返回无法播放）
+const isPlayableUrl = (url) => isM3U8Url(url) || /\.mp4(\?|$)/i.test(url || '')
+
+const toHalfWidth = (input) =>
+  String(input)
+    .replace(/[！-～]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
+    .replace(/　/g, ' ')
+
+function parseChineseNumber(value) {
+  if (value === undefined || value === null) return null
+  const text = String(value).trim()
+  if (!text) return null
+  if (/^\d+$/.test(text)) return parseInt(text, 10)
+
+  const digits = { 零: 0, 一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 }
+  let total = 0
+  let current = 0
+  for (const ch of text) {
+    if (ch === '十') {
+      total += (current || 1) * 10
+      current = 0
+    } else if (ch === '百') {
+      total += (current || 1) * 100
+      current = 0
+    } else if (digits[ch] !== undefined) {
+      current = digits[ch]
+    } else {
+      return null
+    }
+  }
+  return total + current
+}
+
+function isDisqualifiedTitle(name) {
+  if (!name) return false
+  const text = toHalfWidth(name)
+  const brackets = text.match(BRACKET_RE)
+  if (brackets && brackets.some((b) => DISQUALIFY_WORDS.some((w) => b.includes(w)))) return true
+  // 无括号的解说/预告等衍生标题同样排除
+  return /电影解说|影视解说|预告片|花絮|纪录片|制作特辑/.test(text)
+}
+
+function stripDecorations(text) {
+  return text
+    .split(/([\s\-—_:：·,，.。!！?？'"“”‘’、/\\|+~～&＆()（）\[\]【】]+)/)
+    .map((token) => {
+      if (!token || /^[\s\-—_:：·,，.。!！?？'"“”‘’、/\\|+~～&＆()（）\[\]【】]+$/.test(token)) return token
+      let cleaned = token
+      // 词首/词尾的装饰词（如 "HD国语"、"4K"、"完结"）
+      for (let i = 0; i < 3; i++) {
+        const next = cleaned.replace(DECORATION_HEAD_RE, '').replace(DECORATION_TAIL_RE, '')
+        if (next === cleaned) break
+        cleaned = next
+      }
+      return cleaned
+    })
+    .join('')
+}
+
+function normalizeTitle(name) {
+  if (!name) return ''
+  let text = toHalfWidth(name)
+  text = text.replace(/[《》]/g, ' ')
+  text = stripBrackets(text)
+  text = stripDecorations(text)
+  text = text.replace(/[\s\-—_:：·,，.。!！?？'"“”‘’、/\\|+~～&＆()（）\[\]【】]/g, '')
+  return text.toLowerCase()
+}
+
+function cleanTitleForSearch(name) {
+  if (!name) return ''
+  let text = toHalfWidth(name)
+  text = text.replace(/[《》]/g, ' ')
+  text = stripBrackets(text)
+  text = stripDecorations(text)
+  return text.replace(/\s+/g, ' ').trim()
+}
+
+/**
+ * 从标题中提取基础片名与季数。
+ * 电影不解析季数：片名结尾的数字（如《流浪地球2》《封神第一部》）属于片名本身。
+ */
+function extractSeasonInfo(seriesName, type = 'tv') {
+  if (!seriesName) return { baseName: '', seasonNumber: 1 }
+
+  const raw = toHalfWidth(seriesName)
+  if (type === 'movie') {
+    return { baseName: cleanTitleForSearch(raw), seasonNumber: 1 }
+  }
+
+  let baseName = raw
+  let seasonNumber = 1
+
+  const chineseMatch = baseName.match(SEASON_MARKER_RE)
+  const englishMatch = baseName.match(SEASON_EN_RE)
+  const suffixMatch = baseName.match(SEASON_SUFFIX_RE)
+
+  if (chineseMatch) {
+    seasonNumber = parseChineseNumber(chineseMatch[1]) || 1
+    baseName = baseName.replace(SEASON_MARKER_GLOBAL_RE, ' ')
+  } else if (englishMatch) {
+    seasonNumber = parseInt(englishMatch[1], 10) || 1
+    baseName = baseName.replace(SEASON_EN_RE, ' ')
+  } else if (suffixMatch) {
+    seasonNumber = parseInt(suffixMatch[1], 10) || 1
+    baseName = baseName.replace(SEASON_SUFFIX_RE, ' ')
+  }
+
+  // 结尾的 1-2 位数字视为季数（如 "庆余年2"）；四位数年份（2019/2024）不在此处理
+  const trailingMatch = baseName.match(/^(.*\D)(\d{1,2})$/)
+  if (trailingMatch) {
+    const num = parseInt(trailingMatch[2], 10)
+    if (num >= 1 && num <= 30) {
+      seasonNumber = num
+      baseName = trailingMatch[1]
+    }
+  }
+
+  return { baseName: cleanTitleForSearch(baseName), seasonNumber }
+}
+
+/**
+ * 标题是否与目标完全一致（规范化后）。
+ * 规范化为：全半角统一、去掉括号内容、去掉清晰度/语言/年份等装饰、去掉空白与标点。
+ */
+function isSameTitle(itemName, baseName, targetSeason, type, queryName) {
+  if (!itemName || isDisqualifiedTitle(itemName)) return false
+  // 站点标了粤语/外语版本而用户没点名，视为不同版本
+  if (ALTERNATIVE_LANGUAGE_RE.test(toHalfWidth(itemName)) && !ALTERNATIVE_LANGUAGE_RE.test(toHalfWidth(queryName || ''))) {
+    return false
+  }
+  const item = extractSeasonInfo(itemName, type)
+  if (normalizeTitle(item.baseName) !== normalizeTitle(baseName)) return false
+  if (type === 'movie') return true
+  return item.seasonNumber === targetSeason
+}
+
+function parseEpisodeNumber(label) {
+  if (label === undefined || label === null) return null
+  const text = toHalfWidth(label).trim()
+  if (!text) return null
+
+  let match = text.match(/第\s*([一二三四五六七八九十百零两\d]+)\s*[集话期]/)
+  if (match) return parseChineseNumber(match[1])
+
+  match = text.match(/[Ss]\d{1,2}[Ee](\d{1,4})/)
+  if (match) return parseInt(match[1], 10)
+
+  match = text.match(/[Ee][Pp]?\s*0*(\d{1,4})/)
+  if (match) return parseInt(match[1], 10)
+
+  match = text.match(/0*(\d{1,4})\s*[集话期]/)
+  if (match) return parseInt(match[1], 10)
+
+  match = text.match(/^0*(\d{1,4})$/)
+  if (match) return parseInt(match[1], 10)
+
+  return null
+}
+
+function splitPlayEntry(entry) {
+  const index = entry.indexOf('$')
+  if (index === -1) return ['', entry.trim()]
+  return [entry.slice(0, index).trim(), entry.slice(index + 1).trim()]
+}
+
+function movieSegmentScore(label, url) {
+  let score = isM3U8Url(url) ? 100 : 50
+  if (/正片|修复版|完整版|高清|蓝光|4k|1080p|hd/i.test(label)) score += 10
+  if (/tc|抢先|枪版|cam|预告|花絮/i.test(label)) score -= 20
+  return score
+}
+
+function pickBestMovieSegment(segments) {
+  let best = null
+
+  for (const segment of segments) {
+    const [label, url] = splitPlayEntry(segment)
+    if (!url || !isPlayableUrl(url)) continue
+    // 带集数标记说明这是剧集串，不能当成电影的正片
+    if (parseEpisodeNumber(label) !== null) continue
+
+    const qualityText = /tc|抢先|枪版|cam|预告/i.test(label) ? '抢先版' : '正片'
+    const score = movieSegmentScore(label, url)
+    if (!best || score > best.score) best = { url, qualityText, score }
+  }
+
+  return best
+}
+
+/**
+ * 返回带集数标记的所有资源（便于整季缓存），集数过滤在 loadResource 中完成。
  */
 function extractPlayInfoForCache(item, siteTitle, type) {
   const { vod_name, vod_play_url, vod_play_from, vod_remarks = '' } = item
@@ -83,60 +284,111 @@ function extractPlayInfoForCache(item, siteTitle, type) {
 
   return playSources.flatMap((playSource, i) => {
     const sourceName = sourceNames[i] || '默认源'
-    const isTV = playSource.includes('#')
-    const results = []
+    const segments = playSource.split('#').filter(Boolean)
 
-    if (type === 'tv' && isTV) {
-      const episodes = playSource.split('#').filter(Boolean)
-      episodes.forEach((ep) => {
-        const [epName, url] = ep.split('$')
-        if (url && isM3U8Url(url)) {
-          // 提取数字集数用于后续精确过滤
-          const epMatch = epName.match(/第(\d+)集/)
-          results.push({
-            name: siteTitle,
-            description: `${vod_name} - ${epName}${vod_remarks ? ' - ' + vod_remarks : ''} - [${sourceName}]`,
-            url: url.trim(),
-            _ep: epMatch ? parseInt(epMatch[1]) : null // 内部标记
-          })
-        }
-      })
-    } else if (type === 'movie' && !isTV) {
-      const firstM3U8 = playSource.split('#').find((v) => isM3U8Url(v.split('$')[1]))
-      if (firstM3U8) {
-        const [quality, url] = firstM3U8.split('$')
-        const qualityText = quality.toLowerCase().includes('tc') ? '抢先版' : '正片'
-        results.push({
+    if (type === 'movie') {
+      const best = pickBestMovieSegment(segments)
+      if (!best) return []
+      return [
+        {
           name: siteTitle,
-          description: `${vod_name} - ${qualityText} - [${sourceName}]`,
-          url: url.trim()
-        })
-      }
+          description: `${vod_name} - ${best.qualityText} - [${sourceName}]`,
+          url: best.url
+        }
+      ]
     }
-    return results
+
+    return segments.flatMap((segment) => {
+      const [epName, url] = splitPlayEntry(segment)
+      if (!url || !isPlayableUrl(url)) return []
+
+      const episodeNumber = parseEpisodeNumber(epName)
+      if (episodeNumber === null) return [] // "全集/合全集"等无法定位具体集数
+
+      return [
+        {
+          name: siteTitle,
+          description: `${vod_name} - ${epName}${vod_remarks ? ' - ' + vod_remarks : ''} - [${sourceName}]`,
+          url,
+          _ep: episodeNumber
+        }
+      ]
+    })
   })
 }
 
 function parseResourceSites(VodData) {
+  const normalizeUrl = (value) => {
+    const url = value.trim()
+    // 只在接口路径末尾补 '/'；.php/.json 等文件端点不能补
+    return url.endsWith('/') || /\.(php|json|xml|aspx?)$/i.test(url) ? url : url + '/'
+  }
+
   const parseLine = (line) => {
     const [title, value] = line.split(',').map((s) => s.trim())
-    // 稍微优化：防止像 .php 结尾的接口被强制加上 '/'
-    if (title && value?.startsWith('http')) {
-      return { title, value: value.endsWith('/') || value.includes('.php') || value.includes('/json') ? value : value + '/' }
-    }
+    if (title && value?.startsWith('http')) return { title, value: normalizeUrl(value) }
     return null
   }
+
+  const dedupe = (sites) => {
+    const seen = new Set()
+    return sites.filter((site) => {
+      if (!site) return false
+      const key = site.value.replace(/\/+$/, '')
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+  }
+
+  const fromText = (text) => dedupe(text.split('\n').map(parseLine).filter(Boolean))
+
   try {
     const trimmed = VodData?.trim() || ''
+    // 配置为空时回退到内置源
+    if (!trimmed) return fromText(RESOURCE_SITES)
+
     if (trimmed.startsWith('[') || trimmed.startsWith('{')) {
-      return JSON.parse(trimmed)
-        .map((s) => ({ title: s.title || s.name, value: s.url || s.value }))
-        .filter((s) => s.title && s.value)
+      return dedupe(
+        JSON.parse(trimmed)
+          .map((s) => ({ title: s.title || s.name, value: s.url || s.value }))
+          .filter((s) => s.title && s.value?.startsWith('http'))
+          .map((s) => ({ title: s.title, value: normalizeUrl(s.value) }))
+      )
     }
-    return trimmed.split('\n').map(parseLine).filter(Boolean)
+
+    return fromText(trimmed)
   } catch (e) {
-    return RESOURCE_SITES.trim().split('\n').map(parseLine).filter(Boolean)
+    return fromText(RESOURCE_SITES)
   }
+}
+
+function parseSeasonParam(season) {
+  if (season === undefined || season === null || season === '') return null
+  const text = toHalfWidth(season).replace(/[^\d一二三四五六七八九十百零两]/g, '')
+  const value = parseChineseNumber(text)
+  return value && value > 0 ? value : null
+}
+
+function parseEpisodeParam(episode) {
+  if (episode === undefined || episode === null || episode === '') return null
+  return parseEpisodeNumber(episode)
+}
+
+function hashString(text) {
+  let hash = 5381
+  for (let i = 0; i < text.length; i++) hash = ((hash << 5) + hash + text.charCodeAt(i)) >>> 0
+  return hash.toString(36)
+}
+
+function dedupeResources(resources, type) {
+  const seen = new Set()
+  return resources.filter((res) => {
+    const key = type === 'tv' ? `${res._ep ?? ''}|${res.url}` : res.url
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
 }
 
 // --- 主入口函数 ---
@@ -146,12 +398,21 @@ async function loadResource(params) {
   if (multiSource !== 'enabled' || !seriesName) return []
 
   const resourceSites = parseResourceSites(VodData)
-  const { baseName, seasonNumber } = extractSeasonInfo(seriesName)
-  const targetSeason = season ? parseInt(season) : seasonNumber
-  const targetEpisode = episode ? parseInt(episode) : null
+  if (resourceSites.length === 0) return []
+
+  const { baseName, seasonNumber } = extractSeasonInfo(seriesName, type)
+  if (!baseName) return []
+
+  const targetSeason = type === 'movie' ? seasonNumber : parseSeasonParam(season) || seasonNumber
+  const targetEpisode = type === 'tv' ? parseEpisodeParam(episode) : null
+
+  // 缓存 key 带逻辑版本与源列表指纹，避免旧缓存/改配置后命中过期结果
+  const sourcesFingerprint = hashString(resourceSites.map((site) => site.value).join('|'))
+  const cacheKey = `vod_exact_cache_v2_${type}_s${targetSeason}_${encodeURIComponent(
+    normalizeTitle(baseName)
+  )}_${sourcesFingerprint}`
 
   // 1. 尝试从缓存获取
-  const cacheKey = `vod_exact_cache_${baseName}_s${targetSeason}_${type}`
   let allResources = []
 
   try {
@@ -167,20 +428,14 @@ async function loadResource(params) {
     const fetchTasks = resourceSites.map(async (site) => {
       try {
         const response = await Widget.http.get(site.value, {
-          params: { ac: 'detail', wd: baseName.trim() },
+          params: { ac: 'detail', wd: baseName },
           timeout: 10000
         })
-        const list = response?.data?.list
+        const list = response?.data?.list || response?.list
         if (!Array.isArray(list)) return []
 
         return list.flatMap((item) => {
-          const itemInfo = extractSeasonInfo(item.vod_name)
-
-          // 精确匹配逻辑
-          if (itemInfo.baseName !== baseName || itemInfo.seasonNumber !== targetSeason) {
-            return []
-          }
-
+          if (!isSameTitle(item.vod_name, baseName, targetSeason, type, seriesName)) return []
           return extractPlayInfoForCache(item, site.title, type)
         })
       } catch (error) {
@@ -189,15 +444,7 @@ async function loadResource(params) {
     })
 
     const results = await Promise.all(fetchTasks)
-    const merged = results.flat()
-
-    // URL 去重
-    const urlSet = new Set()
-    allResources = merged.filter((res) => {
-      if (urlSet.has(res.url)) return false
-      urlSet.add(res.url)
-      return true
-    })
+    allResources = dedupeResources(results.flat(), type)
 
     // 写入缓存（有效期3小时 = 10800秒）
     if (allResources.length > 0) {
@@ -209,13 +456,7 @@ async function loadResource(params) {
 
   // 3. 结果返回：根据 targetEpisode 进行最后的精确过滤
   if (type === 'tv' && targetEpisode !== null) {
-    return allResources.filter((res) => {
-      // 优先根据提取时的 _ep 数字匹配，若无则根据描述文字匹配
-      if (res._ep !== undefined && res._ep !== null) {
-        return res._ep === targetEpisode
-      }
-      return res.description.includes(`第${targetEpisode}集`)
-    })
+    return allResources.filter((res) => res._ep === targetEpisode)
   }
 
   return allResources
